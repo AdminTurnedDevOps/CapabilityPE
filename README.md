@@ -1,2 +1,22 @@
 # CapabilityPE
-Platform Engineering Capabilities to install via a CLI
+
+`capipe`, which stands for Capibilities Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
+
+![](./capipe.png)
+
+## Command Examples
+
+Add a GitOps Controller
+
+```
+capipe argocd
+```
+
+```
+capipe flux
+```
+
+## WIP
+
+Still working on it! Right now it contains the ability to add Flux and ArgoCD as GitOps Controllers.
+
