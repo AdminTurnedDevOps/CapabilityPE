@@ -23,7 +23,10 @@ var addArgoCDCmd = &cobra.Command{
 			fmt.Println(err)
 		}
 
-		fmt.Println(output)
+		stringOut := string(output[:])
+		fmt.Println(stringOut)
+
+		fmt.Println("Success!")
 	},
 }
 

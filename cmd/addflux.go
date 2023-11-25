@@ -19,11 +19,15 @@ var addFluxCmd = &cobra.Command{
 		command := exec.Command("helm", "install", "flux", "-n", "flux", "fluxcd-community/flux2", "--create-namespace")
 
 		output, err := command.Output()
+
 		if err != nil {
 			fmt.Println(err)
 		}
 
-		fmt.Println(output)
+		stringOut := string(output[:])
+		fmt.Println(stringOut)
+
+		fmt.Println("Success!")
 	},
 }
 
