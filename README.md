@@ -2,9 +2,11 @@
 
 `capipe`, which stands for Capibilities Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
 
-![](./capipe.png)
+![](images/capipe.png)
 
 ## Command Examples
+
+![](images/help.png)
 
 Add a GitOps Controller
 
