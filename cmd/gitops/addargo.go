@@ -10,6 +10,8 @@ import (
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/chart/loader"
 	"helm.sh/helm/v3/pkg/cli"
+
+	cmdd "capipe/cmd"
 )
 
 // add a GitOps Controller
@@ -73,7 +75,7 @@ var addArgoCDCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(addArgoCDCmd)
+	cmdd.RootCmd.AddCommand(addArgoCDCmd)
 
 	// addArgoCDCmd.PersistentFlags().StringVarP(&ArgoCD, "argocd", "argo", "", "Add ArgoCD to your cluster")
 }

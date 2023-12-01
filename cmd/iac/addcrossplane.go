@@ -10,20 +10,22 @@ import (
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/chart/loader"
 	"helm.sh/helm/v3/pkg/cli"
+
+	cmdd "capipe/cmd"
 )
 
 // add a GitOps Controller
-var Flux string
+// var crossplane string
 
-var addFluxCmd = &cobra.Command{
-	Use:   "flux",
-	Short: "Add Flux",
-	Long:  `Add Flux as your GitOps Controller`,
+var addcrossplaneCmd = &cobra.Command{
+	Use:   "crossplane",
+	Short: "Add crossplane",
+	Long:  `Add crossplane as your Kubernetes IAC`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var (
-			chartName   = "fluxcd-community/flux2"
-			releaseName = "flux"
-			namespace   = "flux"
+			chartName   = "crossplane-stable/crossplane"
+			releaseName = "crossplane"
+			namespace   = "crossplane"
 			// args        = map[string]string{
 			// 	// comma seperated values to set
 			// 	"set": "mysqlRootPassword=admin@123,persistence.enabled=false,imagePullPolicy=Always",
@@ -49,7 +51,7 @@ var addFluxCmd = &cobra.Command{
 		client.Namespace = namespace
 		client.ReleaseName = releaseName
 
-		// Find the Flux Helm Chart
+		// Find the crossplane Helm Chart
 		ch, err := client.LocateChart(chartName, settings)
 		if err != nil {
 			fmt.Println(err)
@@ -73,7 +75,7 @@ var addFluxCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(addFluxCmd)
+	cmdd.RootCmd.AddCommand(addcrossplaneCmd)
 
-	// addFluxCmd.PersistentFlags().StringVarP(&Flux, "flux", "flux", "", "Add Flux to your cluster")
+	// addcrossplaneCmd.PersistentFlags().StringVarP(&crossplane, "crossplane", "argo", "", "Add crossplane to your cluster")
 }
