@@ -15,17 +15,21 @@ import (
 )
 
 // add a GitOps Controller
-// var crossplane string
+var Cilium string
 
-var addcrossplaneCmd = &cobra.Command{
-	Use:   "crossplane",
-	Short: "Add crossplane",
-	Long:  `Add crossplane as your Kubernetes IAC`,
-	Run: func(cmd *cobra.Command, args []string) {
+var addCiliumCmd = &cobra.Command{
+	Use:   "cilium",
+	Short: "Add Cilium",
+	Long:  `Add Cilium as your Container Network Interface(CNI)`,
+	Run: func(cmd *cobra.Command, arg []string) {
 		var (
-			chartName   = "crossplane-stable/crossplane"
-			releaseName = "crossplane"
-			namespace   = "crossplane"
+			chartName   = "cilium/cilium"
+			releaseName = "cilium"
+			namespace   = "kube-system"
+			args        = map[string]interface{}{
+				// comma seperated values to set
+				"set": "kubeProxyReplacement=strict,encryption.enabled=true,encryption.type=wireguard,l7Proxy=false",
+			}
 		)
 
 		// Call upon the CLI package
@@ -43,11 +47,10 @@ var addcrossplaneCmd = &cobra.Command{
 		client := action.NewInstall(config)
 
 		// Set metadata
-		client.CreateNamespace = true
 		client.Namespace = namespace
 		client.ReleaseName = releaseName
 
-		// Find the crossplane Helm Chart
+		// Find the Cilium Helm Chart
 		ch, err := client.LocateChart(chartName, settings)
 		if err != nil {
 			fmt.Println(err)
@@ -60,7 +63,7 @@ var addcrossplaneCmd = &cobra.Command{
 		}
 
 		// Install Chart
-		results, err := client.Run(chart, nil)
+		results, err := client.Run(chart, args)
 		if err != nil {
 			log.Printf("%+v", err)
 		}
@@ -71,7 +74,5 @@ var addcrossplaneCmd = &cobra.Command{
 }
 
 func init() {
-	cmdd.RootCmd.AddCommand(addcrossplaneCmd)
-
-	// addcrossplaneCmd.PersistentFlags().StringVarP(&crossplane, "crossplane", "argo", "", "Add crossplane to your cluster")
+	cmdd.RootCmd.AddCommand(addCiliumCmd)
 }

@@ -14,18 +14,18 @@ import (
 	cmdd "capipe/cmd"
 )
 
-// add a GitOps Controller
-// var crossplane string
+// add an Istio Service Mesh
+var Istio string
 
-var addcrossplaneCmd = &cobra.Command{
-	Use:   "crossplane",
-	Short: "Add crossplane",
-	Long:  `Add crossplane as your Kubernetes IAC`,
-	Run: func(cmd *cobra.Command, args []string) {
+var addIstioCmd = &cobra.Command{
+	Use:   "istio",
+	Short: "Add Istio",
+	Long:  `Add Istio as your Service Mesh`,
+	Run: func(cmd *cobra.Command, arg []string) {
 		var (
-			chartName   = "crossplane-stable/crossplane"
-			releaseName = "crossplane"
-			namespace   = "crossplane"
+			istiodChartName   = "istio/istiod"
+			istiodReleaseName = "istiod"
+			namespace         = "istio-system"
 		)
 
 		// Call upon the CLI package
@@ -45,33 +45,30 @@ var addcrossplaneCmd = &cobra.Command{
 		// Set metadata
 		client.CreateNamespace = true
 		client.Namespace = namespace
-		client.ReleaseName = releaseName
+		client.ReleaseName = istiodReleaseName
 
-		// Find the crossplane Helm Chart
-		ch, err := client.LocateChart(chartName, settings)
+		// Find the Helm Chart for Istio
+		ch2, err := client.LocateChart(istiodChartName, settings)
 		if err != nil {
 			fmt.Println(err)
 		}
 
 		// Load the chart to install
-		chart, err := loader.Load(ch)
+		chartConfig, err := loader.Load(ch2)
 		if err != nil {
 			log.Println(err)
 		}
 
-		// Install Chart
-		results, err := client.Run(chart, nil)
+		result, err := client.Run(chartConfig, nil)
 		if err != nil {
-			log.Printf("%+v", err)
+			fmt.Println((err))
 		}
 
-		fmt.Println(results)
+		fmt.Println(result)
 
 	},
 }
 
 func init() {
-	cmdd.RootCmd.AddCommand(addcrossplaneCmd)
-
-	// addcrossplaneCmd.PersistentFlags().StringVarP(&crossplane, "crossplane", "argo", "", "Add crossplane to your cluster")
+	cmdd.RootCmd.AddCommand(addIstioCmd)
 }
