@@ -1,6 +1,6 @@
 # CapabilityPE (capipe)
 
-`capipe`, which stands for Capibilities Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
+`capipe`, which stands for Capibility Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
 
 ![](images/capipe.png)
 
