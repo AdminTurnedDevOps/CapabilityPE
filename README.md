@@ -22,6 +22,11 @@ capipe argocd
 capipe flux
 ```
 
+Use flags
+```
+./capipe datadog --apikey "" --clustername ""
+```
+
 ## WIP
 
 Still working on it! Right now it contains the ability to add Flux and ArgoCD as GitOps Controllers.
