@@ -49,7 +49,7 @@ var addDatadogCmd = &cobra.Command{
 		client.Namespace = namespace
 		client.ReleaseName = releaseName
 
-		// Find the ArgoCD Helm Chart
+		// Find the Helm Chart
 		ch, err := client.LocateChart(chartName, settings)
 		if err != nil {
 			fmt.Println(err)
