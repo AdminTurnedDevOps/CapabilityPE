@@ -1,5 +1,9 @@
 # CapabilityPE (capipe)
-![](images/logo.png)
+
+<p align="center">
+ <img src="images/logo.png?raw=true" alt="90DaysOfDevOps Logo" width="50%" height="50%" />
+</p>
+
 
 `capipe`, which stands for Capibility Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
 
