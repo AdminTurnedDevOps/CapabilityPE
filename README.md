@@ -3,8 +3,6 @@
 
 `capipe`, which stands for Capibility Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
 
-![](images/capipe.png)
-
 ## Dependencies
 
 1. Helm
@@ -30,6 +28,9 @@
             - Crossplane
             - ArgoCD
             - Signoz
+
+![](images/capipe.png)
+
 
 ## Command Examples
 
