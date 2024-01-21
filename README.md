@@ -1,7 +1,7 @@
 # CapabilityPE (capipe)
 
 <p align="center">
- <img src="images/logo.png?raw=true" alt="90DaysOfDevOps Logo" width="50%" height="50%" />
+ <img src="images/logo.png?raw=true" alt="Logo" width="50%" height="50%" />
 </p>
 
 
