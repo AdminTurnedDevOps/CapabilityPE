@@ -4,8 +4,21 @@
  <img src="images/logo.png?raw=true" alt="Logo" width="50%" height="50%" />
 </p>
 
+You know what’s missing? An easy tool that just installs capabilities (ArgoCD, Datadog, KubeVirt, etc.) in an easy way. One command to do it all.
+
+A tool that easily gets whatever capabilities you want your kubernetes cluster to have deployed in production.
 
 `capipe`, which stands for Capibility Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
+
+## Why?
+
+The two biggest questions I get are:
+1. What tools should I use?
+2. How can I easily deploy a production environment?
+
+Those questions are why I made CapiPE.
+
+Easily deploy what you need in a Kubernetes cluster with one command.
 
 ## Dependencies
 
