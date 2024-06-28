@@ -24,6 +24,33 @@ Easily deploy what you need in a Kubernetes cluster with one command.
 
 1. Helm
 
+## Install
+
+Before an actual version is built and released, you can build the CLI/binary/artifact by running the following command in the directory/repo.
+
+```
+go build
+```
+
+## Command Examples
+
+![](images/help.png)
+
+Add a GitOps Controller
+
+```
+capipe argocd
+```
+
+```
+capipe flux
+```
+
+Use flags
+```
+./capipe datadog --apikey "" --clustername ""
+```
+
 ## What's Coming...
 
 - One command to install a Kubernetes cluster
@@ -51,24 +78,7 @@ Easily deploy what you need in a Kubernetes cluster with one command.
 ![](images/capipe.png)
 
 
-## Command Examples
 
-![](images/help.png)
-
-Add a GitOps Controller
-
-```
-capipe argocd
-```
-
-```
-capipe flux
-```
-
-Use flags
-```
-./capipe datadog --apikey "" --clustername ""
-```
 
 ## WIP
 
