@@ -14,7 +14,7 @@ import (
 	cmdd "capipe/cmd"
 )
 
-// add a GitOps Controller
+// add Cilium
 var Cilium string
 
 var addCiliumCmd = &cobra.Command{
