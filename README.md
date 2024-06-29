@@ -10,6 +10,8 @@ A tool that easily gets whatever capabilities you want your kubernetes cluster t
 
 `capipe`, which stands for Capibility Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
 
+![](images/gif.gig)
+
 ## Why?
 
 The two biggest questions I get are:
