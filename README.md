@@ -53,34 +53,42 @@ Use flags
 
 ## What's Coming...
 
-- One command to install a Kubernetes cluster
-    - Terraform configuration within the Capipe directory
-    - Use the following Go library: https://github.com/hashicorp/terraform-exec
-    - Use an `input` function in Go to prompt engineers to enter the variable information OR use it as flags within the CapiPE command line
 - One command to install multiple Platform Capabilities
-    - Platform Capabilities installed based on a particular stack you choose
-        - App stack 1:
+    - Platform Capabilities installed based on a particular stack you choose. Here are some examples:
+        - App Stack 1:
             - ArgoCD
+            - Crossplane
             - OPA
             - Datadog
-        - App stack 2:
-            - Kyverno
-            - Radius
+
+        - App Stack 2:
             - Flux CD
-            - Grafana/Prometheus/Tempo/Loki
-        - App stack 3:
+            - Kyverno
             - Crossplane
+            - Grafana/Prometheus/Tempo/Loki
+
+        - App Stack 3:
             - ArgoCD
+            - Crossplane
+            - OPA
             - Signoz
+
+        - NetSec App Stack 1:
+            - ArgoCD
+            - Crossplane
+            - OPA
+            - Grafana/Prometheus/Tempo/Loki
+            - Cilium
+
+        - Virtualized App Stack 1:
+            - KubeVirt
+            - Cilium
+            - ArgoCD
+            - Crossplane
+            - OPA
+            - Grafana/Prometheus/Tempo/Loki
 
             
 
 ![](images/capipe.png)
-
-
-
-
-## WIP
-
-Still working on it! Right now it contains the ability to add Flux and ArgoCD as GitOps Controllers.
 
