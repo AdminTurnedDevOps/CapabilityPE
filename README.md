@@ -71,6 +71,12 @@ Use flags
             - ArgoCD
             - Crossplane
             - OPA
+            - Kube-Prometheus
+
+        - App Stack 4:
+            - ArgoCD
+            - Crossplane
+            - OPA
             - Signoz
 
         - NetSec App Stack 1:

@@ -15,14 +15,12 @@ import (
 )
 
 // add a GitOps Controller
-var AppStack1 string
-var apiKey string
-var clusterName string
+var AppStack3 string
 
-var addAppStack1Cmd = &cobra.Command{
-	Use:   "appstack1",
-	Short: "Install ArgoCD, Crossplane, OPA, Datadog",
-	Long:  `Install The Following App Stack: ArgoCD, Crossplane, OPA, Datadog`,
+var addAppStack3Cmd = &cobra.Command{
+	Use:   "appstack3",
+	Short: "Install ArgoCD, Crossplane, OPA, Kube-Prometheus",
+	Long:  `Install The Following App Stack: ArgoCD, Crossplane, OPA, Kube-Prometheus`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		//
@@ -177,96 +175,59 @@ var addAppStack1Cmd = &cobra.Command{
 		fmt.Println(resultsOPA)
 
 		//
-		// Datadog
+		// Kube-Prometheus
 		//
 
 		var (
-			chartNameDatadog   = "datadog/datadog"
-			releaseNameDatadog = "datadog"
-			namespaceDatadog   = "datadog"
+			chartNameProm   = "prometheus-community/kube-prometheus-stack"
+			releaseNameProm = "kube-prometheus"
+			namespaceProm   = "monitoring"
 		)
 
 		// Call upon the CLI package
-		settingsDatadog := cli.New()
+		settingsProm := cli.New()
 
 		// Create a new instance of the configuration
-		configDatadog := new(action.Configuration)
+		configProm := new(action.Configuration)
 
 		// Collect local Helm information
-		if err := configDatadog.Init(settingsDatadog.RESTClientGetter(), namespaceDatadog, os.Getenv("HELM_DRIVER"), log.Printf); err != nil {
+		if err := configProm.Init(settingsProm.RESTClientGetter(), namespaceProm, os.Getenv("HELM_DRIVER"), log.Printf); err != nil {
 			log.Printf("%+v", err)
 		}
 
 		// Create a new instance of the `Install` action, which is similar to running `helm install`
-		clientDatadog := action.NewInstall(configDatadog)
+		clientProm := action.NewInstall(configProm)
 
 		// Set metadata
-		clientDatadog.CreateNamespace = true
-		clientDatadog.Namespace = namespaceDatadog
-		clientDatadog.ReleaseName = releaseNameDatadog
+		clientProm.CreateNamespace = true
+		clientProm.Namespace = namespaceProm
+		clientProm.ReleaseName = releaseNameProm
 
 		// Find the Helm Chart
-		chDatadog, err := clientDatadog.LocateChart(chartNameDatadog, settingsDatadog)
+		chProm, err := clientProm.LocateChart(chartNameProm, settingsProm)
 		if err != nil {
 			fmt.Println(err)
 		}
 
 		// Load the chart to install
-		chartDatadog, err := loader.Load(chDatadog)
+		chartProm, err := loader.Load(chProm)
 		if err != nil {
 			log.Println(err)
 		}
 
-		valsDatadog := map[string]interface{}{
-			"datadog": map[string]interface{}{
-				"site": "datadoghq.com",
-
-				"clusterName": clusterName,
-
-				"kubeStateMetricsEnabled": true,
-
-				"kubeStateMetricsCore": map[string]interface{}{
-					"enabled": true,
-				},
-
-				"apiKey": apiKey,
-
-				"logs": map[string]interface{}{
-					"enabled":             true,
-					"containerCollectAll": true,
-				},
-
-				"processAgent": map[string]interface{}{
-					"enabled": true,
-				},
-
-				"clusterAgent": map[string]interface{}{
-					"replicas":                  "LoadBalancer",
-					"createPodDisruptionBudget": true,
-				},
-
-				"autoscaling": map[string]interface{}{
-					"enabled":     true,
-					"minReplicas": 2,
-				},
-			},
-		}
-
 		// Install Chart
-		// Install Chart
-		resultsDatadog, err := clientDatadog.Run(chartDatadog, valsDatadog)
+		rel, err := clientProm.Run(chartProm, nil)
 		if err != nil {
-			log.Printf("%+v", err)
+			panic(err)
 		}
 
-		fmt.Println(resultsDatadog)
+		log.Printf("Installed Chart from path: %s in namespace: %s\n", rel.Name, rel.Namespace)
+		// this will confirm the values set during installation
+		log.Println(rel.Config)
 
 	},
 }
 
 func init() {
-	cmdd.RootCmd.AddCommand(addAppStack1Cmd)
-
-	addAppStack1Cmd.PersistentFlags().StringVarP(&apiKey, "apikey", "a", "", "Enter your Datadog API key")
-	addAppStack1Cmd.PersistentFlags().StringVarP(&clusterName, "clustername", "n", "", "Enter the name of the cluster to be associated with Datadog")
+	cmdd.RootCmd.AddCommand(addAppStack3Cmd)
 }
