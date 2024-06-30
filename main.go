@@ -3,6 +3,7 @@ package main
 import (
 	"capipe/cmd"
 	_ "capipe/cmd/appstack"
+	_ "capipe/cmd/cluster-creation"
 	_ "capipe/cmd/gitops"
 	_ "capipe/cmd/iac"
 	_ "capipe/cmd/monitoring"
