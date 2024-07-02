@@ -53,10 +53,10 @@ Use flags
 ./capipe datadog --apikey "" --clustername ""
 ```
 
-## What's Coming...
+## AppStack Command Examples
 
-- One command to install multiple Platform Capabilities
-    - Platform Capabilities installed based on a particular stack you choose. Here are some examples:
+As of right now, you have the ability to install the following app stacks with one command.
+
         - App Stack 1:
             - ArgoCD
             - Crossplane
@@ -74,6 +74,31 @@ Use flags
             - Crossplane
             - OPA
             - Kube-Prometheus
+
+Code:
+
+```
+# Deploys Argo, Crossplane, OPA, and Datadog
+
+./capipe appstack1
+```
+
+```
+# Deploys Flux, Kyvernom Crossplane, and Grafana/Prometheus/Tempo/Loki
+
+./capipe appstack2
+```
+
+```
+Deploys Argo, Crossplane, OPA, and Kube-Prometheus
+
+./capipe appstack3
+```
+
+## What's Coming...
+
+- One command to install multiple Platform Capabilities
+    - Platform Capabilities installed based on a particular stack you choose. Here are some examples:
 
         - App Stack 4:
             - ArgoCD
