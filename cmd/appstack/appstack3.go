@@ -1,3 +1,9 @@
+//App Stack 3 contains:
+// - ArgoCD
+// - Crossplane
+// - OPA
+// - Kube-Prometheus
+
 package cmd
 
 import (
@@ -14,7 +20,6 @@ import (
 	cmdd "capipe/cmd"
 )
 
-// add a GitOps Controller
 var AppStack3 string
 
 var addAppStack3Cmd = &cobra.Command{

@@ -1,3 +1,9 @@
+//App Stack 3 contains:
+// - ArgoCD
+// - Crossplane
+// - OPA
+// - Datadog
+
 package cmd
 
 import (
@@ -14,7 +20,6 @@ import (
 	cmdd "capipe/cmd"
 )
 
-// add a GitOps Controller
 var AppStack1 string
 var apiKey string
 var clusterName string
