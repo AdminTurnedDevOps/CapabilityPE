@@ -14,9 +14,11 @@ import (
 	cmdd "capipe/cmd"
 )
 
+var license string
+
 var addKastenCmd = &cobra.Command{
 	Use:   "kasten",
-	Short: "Add Kasten",
+	Short: "Add Veeam Kasten For Kubernetes",
 	Long:  `Add Kasten as your k8s backup solution`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var (
@@ -25,10 +27,9 @@ var addKastenCmd = &cobra.Command{
 			namespace   = "kasten-io"
 		)
 
-		// NOT SURE if Helm Values are needed for this installation or not...
-		// helmValues := map[string]interface{}{
-		// 	"set": "",
-		// }
+		vars := map[string]interface{}{
+			"set": "license=" + license,
+		}
 
 		// Call upon the CLI package
 		settings := cli.New()
@@ -48,6 +49,7 @@ var addKastenCmd = &cobra.Command{
 		client.CreateNamespace = true
 		client.Namespace = namespace
 		client.ReleaseName = releaseName
+		client.RepoURL = "https://charts.kasten.io/"
 
 		// Find the Kasten Helm Chart
 		ch, err := client.LocateChart(chartName, settings)
@@ -62,7 +64,7 @@ var addKastenCmd = &cobra.Command{
 		}
 
 		// Install Chart
-		results, err := client.Run(chart, nil)
+		results, err := client.Run(chart, vars)
 		if err != nil {
 			log.Printf("%+v", err)
 		}
@@ -74,4 +76,6 @@ var addKastenCmd = &cobra.Command{
 
 func init() {
 	cmdd.RootCmd.AddCommand(addKastenCmd)
+	addKastenCmd.PersistentFlags().StringVarP(&license, "license", "l", "", "Add Your Veeam Kasten License")
+
 }
