@@ -20,7 +20,7 @@ var addKastenCmd = &cobra.Command{
 	Long:  `Add Kasten as your k8s backup solution`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var (
-			chartName   = "kasten/k10"
+			chartName   = "k10"
 			releaseName = "k10"
 			namespace   = "kasten-io"
 		)
