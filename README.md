@@ -4,11 +4,11 @@
  <img src="images/logo.png?raw=true" alt="Logo" width="50%" height="50%" />
 </p>
 
-You know what’s missing? An easy tool that just installs capibilities (ArgoCD, Datadog, KubeVirt, etc.) in an easy way. One command to do it all.
+You know what’s missing? An easy tool that just installs capabilities (ArgoCD, Datadog, KubeVirt, etc.) in an easy way. One command to do it all.
 
 A tool that easily gets whatever capabilities you want your kubernetes cluster to have deployed in production.
 
-`capipe`, which stands for Capibility Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
+`capipe`, which stands for Capability Platform Engineering, allows you to specify capabilities that you want to install within your Platform Engineering environment.
 
 ![](images/gif.gif)
 
